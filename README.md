@@ -14,5 +14,11 @@ Aprendiendo a Programar
   var c=a+b;
   //Así imprimo el resultado de mi operación
   alert(c);
+  //Así condiciono una variable (== igual, > mayor que, < menor que, >= mayor o igual que, <= menor o igual que, != diferente
+  if(c==8){
+    alert(8);
+  }
+  //Así incremento una variable
+                                                                                                  
 </script>
 ```
