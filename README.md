@@ -18,7 +18,11 @@ Aprendiendo a Programar
   if(c==8){
     alert(8);
   }
-  //Así incremento una variable
-                                                                                                  
+  //Así incremento una variable (+ para incrementar, - para decrementar)
+  c=c+1; //incrementa uno
+  c++; //incrementa uno
+  c+=1; //incrementa uno
+  c+=2; //incrementa dos
+ 
 </script>
 ```
