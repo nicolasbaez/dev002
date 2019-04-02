@@ -23,6 +23,9 @@ Aprendiendo a Programar
   c++; //incrementa uno
   c+=1; //incrementa uno
   c+=2; //incrementa dos
- 
+  //Así controlo un ciclo (declaro la variable que controlaré y le pongo un valor inicial; declaro en qué valor debe terminar; declaro cada cuanto incrementa)
+  for(var i=0;i<=10;i++){
+    alert(i);
+  }
 </script>
 ```
