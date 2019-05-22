@@ -4,7 +4,7 @@ Funciona usando F12 y ajustando las preferencias del editor!
 
 ![videoNico](https://github.com/nicolasbaez/videoNico/blob/master/portada.png)
 
-1. gameDev.htm
+1. videoNico.htm
 ```html
 <html>
 	<script src="p5.js">//carga processing para javascript</script>
