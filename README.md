@@ -1,14 +1,17 @@
 # videoNico
-Creando la interfaz para YouTube
-Funciona usando F12 y ajustando las preferencias del editor!
+Creando la interfaz para YouTube, funciona usando F12 y ajustando las preferencias del editor!
 
 ![videoNico](https://github.com/nicolasbaez/videoNico/blob/master/portada.png)
 
 1. videoNico.htm
 ```html
 <html>
-	<script src="p5.js">//carga processing para javascript</script>
-	<script src="p5.dom.js">//carga processing para las características del navegador</script>
+	<script src="p5.js">
+		//Descarga: https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/p5.js
+	</script>
+	<script src="p5.dom.js">
+		//Descarga: https://raw.githubusercontent.com/lmccart/p5.js/master/lib/addons/p5.dom.js
+	</script>
 	<script>
 		let capture;
 		var filtro=[];
