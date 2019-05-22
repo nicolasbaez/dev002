@@ -1,60 +1,96 @@
-# dev002
-Aprendiendo a Programar
+# videoNico
+Creando la interfaz para YouTube
+Funciona usando F12 y ajustando las preferencias del editor!
+
+![videoNico](https://github.com/nicolasbaez/digitalGods004/blob/master/portada.png)
+
+1. gameDev.htm
 ```html
-<!-- Así hago un comentario en HTML, con la etiqueta <script></script> puedo empezar mi programa -->
-<script>
-	//Esta es una variable
-	var a;
-	//Esta es la asignación de un valor a la variable
-	var a=12;
-	//Así se muestra el valor de la variable
-	alert(a);
-	//Así se opera una variable (+ suma, + resta, * multiplicación, / división
-	var a=3;
-	var b=5;
-	var c=a+b;
-	//Así imprimo el resultado de mi operación
-	alert(c);
-	//Así condiciono una variable (== igual, > mayor que, < menor que, >= mayor o igual que, <= menor o igual que, != diferente
-	if(c==8){
-		alert(8);
+<html>
+    <script src="p5.js">
+        //Descarga: https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/p5.js
+    </script>
+    <script src="p5.dom.js">
+        //Descarga: https://raw.githubusercontent.com/lmccart/p5.js/master/lib/addons/p5.dom.js
+    </script>
+    <script src="digitalGods.js">
+        //Nuestro juego de video
+    </script>
+    <body style="margin:0;">
+    </body>
+</html>
+```
+2. digitalGods.js
+```javascript
+//variables
+var nEdificios=128;
+var minPisosEdificio=48;
+var maxPisosEdificio=64;
+var wEdificios=[];
+var hEdificios=[];
+var pEdificios=[];
+var xStars=[];
+var yStars=[];
+var dStars=[];
+var txLight=[];
+function setup(){
+	createCanvas(window.innerWidth,window.innerHeight);
+	background(0);
+	for(var i=0;i<nEdificios;i++){
+		wEdificios[i]=random(width*0.02,width*0.04);
+		hEdificios[i]=random(height*0.25,height*0.75);
+		xStars[i]=random(width);
+		yStars[i]=random(height);
+		dStars[i]=random(4);
+		pEdificios[i]=random(minPisosEdificio,maxPisosEdificio);
 	}
-	//Así incremento una variable (+ para incrementar, - para decrementar)
-	c=c+1; //incrementa uno
-	c++; //incrementa uno
-	c+=1; //incrementa uno
-	c+=2; //incrementa dos
-	//Así controlo un ciclo (declaro la variable que controlaré y le pongo un valor inicial; declaro en qué valor debe terminar; declaro cada cuanto incrementa)
-	for(var i=0;i<=10;i++){
-		alert(i);
+	for(var i=0;i<nEdificios;i++){
+		txLight[i]=[];
+		for(var j=0;j<pEdificios[i];j++){
+			txLight[i][j]=random(192);
+		}	
 	}
-	//Así creo un array
-	var ejemplo = [];
-	//Así le asigno los valores a un array
-	ejemplo[0]=45;
-	ejemplo[1]=2;
-	ejemplo[2]=3;
-	//Así puedo imprimir los valores de mi array
-	for(var i=0;i<=2;i++){
-		alert(ejemplo[i]);
+}
+function atardecer(){
+	for(var i=0;i<=height;i++){
+		//rr,gg,bb
+		stroke(
+			map(i,0,height,map(mouseX,0,width,0,0),map(mouseX,0,width,255,255)),
+			map(i,0,height,map(mouseX,0,width,153,0),map(mouseX,0,width,255,102)),
+			map(i,0,height,map(mouseX,0,width,255,0),map(mouseX,0,width,255,0)),
+		);
+		line(0,i,width,i);
 	}
-	var a=0;
-	for(var i=0;i<=12;i+=2){
-		a=i;
-		switch(a){
-			case 0:alert("Hola");
-			break;
-			case 2:alert("Cómo");
-			break;
-			case 4:alert("Estás");
-			break;
-			case 6:alert("Nicolás");
-			break;
-			case 8:alert("?");
-			break;
-			case 12:alert("ok, gracias");
-			break;
+}
+function edificios(){
+	var dx=0;
+	for(var i=0;i<nEdificios;i++){
+		fill(255,255,255,map(mouseX,0,width,0,255));
+		noStroke();
+		ellipse(xStars[i],yStars[i]-map(mouseX,0,width,0,16),dStars[i],dStars[i]);
+	}
+	for(var i=0;i<nEdificios;i++){
+		noStroke();
+		fill(map(mouseX,0,width,32,0));
+		rect(dx,height-hEdificios[i],wEdificios[i],hEdificios[i]);
+		stroke(
+			map(mouseX,0,width,255,255),
+			map(mouseX,0,width,255,102),
+			map(mouseX,0,width,255,0)
+		);
+		line(dx,height-hEdificios[i],dx+wEdificios[i],height-hEdificios[i]);
+		var k=0;
+		for(var j=height-hEdificios[i];j<=hEdificios[i];j+=hEdificios[i]/pEdificios[i]){
+			stroke(map(mouseX,0,width,64,0));
+			fill(0,255,255,map(mouseX,0,width,0,txLight[i][k]));
+			rect(dx,j,wEdificios[i],hEdificios[i]/pEdificios[i]);
+			k++;
 		}
-	}    
-</script>
+		dx+=width*0.02;
+	}
+}
+function draw(){
+	atardecer();
+	edificios();	
+}
 ```
